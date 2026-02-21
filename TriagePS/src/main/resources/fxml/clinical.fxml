@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="it.unibo.controller.ClinicalController"
+      styleClass="root-pane"
+      spacing="12" prefWidth="680" prefHeight="620">
+
+    <HBox alignment="CENTER_LEFT" spacing="20" styleClass="clinical-header">
+        <Label fx:id="pazienteLabel" text="Paziente" styleClass="patient-name-label"/>
+    </HBox>
+
+    <Separator/>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+
+        <Tab text="Parametri Vitali">
+            <ScrollPane fitToWidth="true">
+            <VBox spacing="14" styleClass="tab-content">
+                <Label text="Parametri vitali principali" styleClass="section-label"/>
+                <GridPane hgap="16" vgap="10">
+                    <Label text="Freq. cardiaca (HR):" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="hrField" promptText="es. 80" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="bpm" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="PA Sistolica:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="pasSisField" promptText="es. 120" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="mmHg" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="PA Diastolica:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="pasDiaField" promptText="es. 80" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="mmHg" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Saturazione (SpO2):" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="spo2Field" promptText="es. 98" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="pct" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Freq. respiratoria (FR):" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="frField" promptText="es. 16" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="atti/min" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Temperatura (T):" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="tempField" promptText="es. 37.2" GridPane.rowIndex="5" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="grC" GridPane.rowIndex="5" GridPane.columnIndex="2" styleClass="unit-label"/>
+                </GridPane>
+
+                <Separator/>
+                <Label text="Parametri aggiuntivi" styleClass="section-label"/>
+                <GridPane hgap="16" vgap="10">
+                    <Label text="Glasgow Coma Scale (GCS):" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="gcsField" promptText="3-15" GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="/15" GridPane.rowIndex="0" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Dolore NRS:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="nrsField" promptText="0-10" GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="/10" GridPane.rowIndex="1" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Glicemia capillare:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="glicemiaField" promptText="es. 95" GridPane.rowIndex="2" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="mg/dL" GridPane.rowIndex="2" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Peso:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="pesoField" promptText="es. 70" GridPane.rowIndex="3" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="kg" GridPane.rowIndex="3" GridPane.columnIndex="2" styleClass="unit-label"/>
+
+                    <Label text="Altezza:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="field-label"/>
+                    <TextField fx:id="altezzaField" promptText="es. 175" GridPane.rowIndex="4" GridPane.columnIndex="1" prefWidth="120"/>
+                    <Label text="cm" GridPane.rowIndex="4" GridPane.columnIndex="2" styleClass="unit-label"/>
+                </GridPane>
+            </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <Tab text="Informazioni Cliniche">
+            <ScrollPane fitToWidth="true">
+            <VBox spacing="14" styleClass="tab-content">
+                <Label text="Allergie note" styleClass="section-label"/>
+                <HBox spacing="8">
+                    <TextField fx:id="allergiaInput" promptText="Inserisci allergia..." HBox.hgrow="ALWAYS"/>
+                    <Button text="+ Aggiungi" onAction="#onAggiungiAllergia" styleClass="btn-small"/>
+                    <Button text="Rimuovi" onAction="#onRimuoviAllergia" styleClass="btn-small-danger"/>
+                </HBox>
+                <ListView fx:id="allergiaList" prefHeight="80"/>
+
+                <Separator/>
+                <Label text="Farmaci regolari" styleClass="section-label"/>
+                <HBox spacing="8">
+                    <TextField fx:id="farmacoInput" promptText="Inserisci farmaco..." HBox.hgrow="ALWAYS"/>
+                    <Button text="+ Aggiungi" onAction="#onAggiungiFarmaco" styleClass="btn-small"/>
+                    <Button text="Rimuovi" onAction="#onRimuoviFarmaco" styleClass="btn-small-danger"/>
+                </HBox>
+                <ListView fx:id="farmacoList" prefHeight="80"/>
+
+                <Separator/>
+                <Label text="Patologie croniche rilevanti" styleClass="section-label"/>
+                <TextArea fx:id="patologieArea" promptText="Es. Diabete, BPCO, ipertensione..." prefHeight="60"/>
+
+                <Label text="Stato gravidanza" styleClass="section-label"/>
+                <HBox fx:id="gravidanzaBox" spacing="16">
+                    <RadioButton fx:id="gravNa" text="N/A" selected="true"/>
+                    <RadioButton fx:id="gravSi" text="Si"/>
+                    <RadioButton fx:id="gravSospetta" text="Sospetta"/>
+                </HBox>
+
+                <Label text="Disabilita / difficolta comunicative" styleClass="section-label"/>
+                <TextArea fx:id="disabilitaArea" promptText="Es. Sordita, barriera linguistica..." prefHeight="60"/>
+
+                <Label text="Ultimi eventi rilevanti" styleClass="section-label"/>
+                <TextArea fx:id="eventiArea" promptText="Es. Trauma cranico, febbre da 3 giorni..." prefHeight="60"/>
+
+                <Label text="Valutazione livello di rischio" styleClass="section-label"/>
+                <TextArea fx:id="rischioArea" promptText="Es. Dolore toracico acuto, dispnea grave..." prefHeight="60"/>
+            </VBox>
+            </ScrollPane>
+        </Tab>
+
+        <Tab text="Riepilogo e Triage">
+            <VBox spacing="16" styleClass="tab-content">
+                <Label text="Verifica i dati inseriti" styleClass="section-label"/>
+
+                <Button text="Aggiorna riepilogo" onAction="#onAggiornaRiepilogo" styleClass="btn-secondary"/>
+
+                <TableView fx:id="riepilogoTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colParametro" text="Parametro" prefWidth="220"/>
+                        <TableColumn fx:id="colValore" text="Valore" prefWidth="120"/>
+                        <TableColumn fx:id="colUnita" text="Unita" prefWidth="100"/>
+                    </columns>
+                </TableView>
+
+                <Separator/>
+                <Label text="Assegna codice triage e salva:" styleClass="section-label"/>
+
+                <HBox alignment="CENTER" spacing="16">
+                    <Button text="BIANCO" onAction="#onSalvaBianco" styleClass="triage-bianco" prefWidth="120" prefHeight="50"/>
+                    <Button text="VERDE"  onAction="#onSalvaVerde"  styleClass="triage-verde"  prefWidth="120" prefHeight="50"/>
+                    <Button text="GIALLO" onAction="#onSalvaGiallo" styleClass="triage-giallo" prefWidth="120" prefHeight="50"/>
+                    <Button text="ROSSO"  onAction="#onSalvaRosso"  styleClass="triage-rosso"  prefWidth="120" prefHeight="50"/>
+                </HBox>
+            </VBox>
+        </Tab>
+    </TabPane>
+</VBox>

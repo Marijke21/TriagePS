@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fitToWidth="true">
+<VBox fx:controller="it.unibo.controller.RegistrazioneController"
+      styleClass="root-pane"
+      spacing="16" prefWidth="560">
+
+    <Label text="📋 Registrazione Nuovo Paziente" styleClass="title-label"/>
+    <Separator/>
+
+    <!-- Dati obbligatori -->
+    <Label text="Dati obbligatori" styleClass="section-label"/>
+
+    <GridPane hgap="12" vgap="10">
+        <Label text="Codice Fiscale (se disponibile):" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="cfField" promptText="Opzionale" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Nome *" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="nomeField" promptText="Nome" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Cognome *" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="cognomeField" promptText="Cognome" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Data di nascita *" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="field-label"/>
+        <DatePicker fx:id="dataNascitaPicker" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Sesso *" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="field-label"/>
+        <HBox spacing="12" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <RadioButton fx:id="sessoM" text="M" toggleGroup="$sessoGroup"/>
+            <RadioButton fx:id="sessoF" text="F" toggleGroup="$sessoGroup"/>
+            <RadioButton fx:id="sessoAltro" text="Altro" toggleGroup="$sessoGroup"/>
+            <fx:define>
+                <ToggleGroup fx:id="sessoGroup"/>
+            </fx:define>
+        </HBox>
+    </GridPane>
+
+    <Separator/>
+
+    <!-- Dati opzionali -->
+    <Label text="Dati opzionali" styleClass="section-label"/>
+
+    <GridPane hgap="12" vgap="10">
+        <Label text="Tipo documento:" GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="tipoDocField" promptText="Passaporto, CI..." GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="Numero documento:" GridPane.rowIndex="1" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="numeroDocField" promptText="Numero" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Paese rilascio:" GridPane.rowIndex="2" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="paeseDocField" promptText="Es. Francia" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Nazionalità:" GridPane.rowIndex="3" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="nazionalitaField" promptText="Es. Francese" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Telefono:" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="telefonoField" promptText="+39..." GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Email:" GridPane.rowIndex="5" GridPane.columnIndex="0" styleClass="field-label"/>
+        <TextField fx:id="emailField" promptText="email@esempio.it" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <Separator/>
+
+    <HBox alignment="CENTER_RIGHT" spacing="16">
+        <Button text="ANNULLA" onAction="#onAnnulla" styleClass="btn-secondary"/>
+        <Button text="REGISTRA" onAction="#onRegistra" styleClass="btn-primary"/>
+    </HBox>
+</VBox>
+</ScrollPane>

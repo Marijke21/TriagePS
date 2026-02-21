@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="it.unibo.controller.MainController"
+      styleClass="root-pane"
+      alignment="CENTER" spacing="30"
+      prefWidth="520" prefHeight="400">
+
+    <Label text="🏥 Gestione Pronto Soccorso" styleClass="title-label"/>
+    <Label text="Sistema FHIR R4" styleClass="subtitle-label"/>
+
+    <Separator/>
+
+    <VBox alignment="CENTER" spacing="12">
+        <Label text="Inserisci il Codice Fiscale del paziente:" styleClass="field-label"/>
+        <TextField fx:id="cfField" promptText="Es. RSSMRA85M01H501Z"
+                   styleClass="cf-field" maxWidth="300"/>
+    </VBox>
+
+    <HBox alignment="CENTER" spacing="20">
+        <Button text="REGISTRA NUOVO PAZIENTE"
+                onAction="#onRegistra"
+                styleClass="btn-secondary"/>
+        <Button text="CONFERMA"
+                onAction="#onConferma"
+                styleClass="btn-primary"/>
+    </HBox>
+
+    <Label text="Oppure usa lo scanner per leggere il CF automaticamente"
+           styleClass="hint-label"/>
+</VBox>

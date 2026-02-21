@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="it.unibo.controller.TriageController"
+      styleClass="root-pane"
+      alignment="CENTER" spacing="28"
+      prefWidth="520" prefHeight="380">
+
+    <Label text="🚨 Accesso Pronto Soccorso" styleClass="title-label"/>
+    <Separator/>
+
+    <VBox alignment="CENTER" spacing="8">
+        <Label text="Paziente:" styleClass="field-label"/>
+        <Label fx:id="nomeLabel" text="—" styleClass="patient-name-label"/>
+        <Label fx:id="accessoLabel" text="—" styleClass="hint-label"/>
+    </VBox>
+
+    <Separator/>
+
+    <Label text="Assegna codice triage:" styleClass="section-label"/>
+
+    <HBox alignment="CENTER" spacing="16">
+        <Button text="BIANCO" onAction="#onBianco" styleClass="triage-bianco" prefWidth="100" prefHeight="60"/>
+        <Button text="VERDE"  onAction="#onVerde"  styleClass="triage-verde"  prefWidth="100" prefHeight="60"/>
+        <Button text="GIALLO" onAction="#onGiallo" styleClass="triage-giallo" prefWidth="100" prefHeight="60"/>
+        <Button text="ROSSO"  onAction="#onRosso"  styleClass="triage-rosso"  prefWidth="100" prefHeight="60"/>
+    </HBox>
+</VBox>
