@@ -139,6 +139,9 @@
                     <Button text="GIALLO" onAction="#onSalvaGiallo" styleClass="triage-giallo" prefWidth="120" prefHeight="50"/>
                     <Button text="ROSSO"  onAction="#onSalvaRosso"  styleClass="triage-rosso"  prefWidth="120" prefHeight="50"/>
                 </HBox>
+                <HBox alignment="CENTER" spacing="16">
+                    <Button text="← Torna alla dashboard" onAction="#onAnnulla" styleClass="btn-secondary" prefHeight="36"/>
+                </HBox>
             </VBox>
         </Tab>
     </TabPane>

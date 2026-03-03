@@ -45,6 +45,11 @@ public class MainController {
         App.navigateTo("registrazione");
     }
 
+    @FXML
+    private void onIndietro() {
+        App.navigateTo("dashboard");
+    }
+
     private void showAlert(String title, String msg) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);

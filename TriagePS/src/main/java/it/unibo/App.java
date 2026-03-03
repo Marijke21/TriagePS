@@ -14,7 +14,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         primaryStage.setTitle("Gestione Pronto Soccorso - FHIR");
-        navigateTo("main");
+        navigateTo("dashboard");
         primaryStage.show();
     }
 
@@ -24,17 +24,18 @@ public class App extends Application {
 
     public static void navigateTo(String fxmlName, Object data) {
         try {
-            FXMLLoader loader = new FXMLLoader(App.class.getResource("/fxml/" + fxmlName + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                App.class.getResource("/fxml/" + fxmlName + ".fxml"));
             Parent root = loader.load();
 
-            // Passa dati al controller se supportato
             Object controller = loader.getController();
             if (data != null && controller instanceof DataReceiver) {
                 ((DataReceiver) controller).receiveData(data);
             }
 
             Scene scene = new Scene(root);
-            scene.getStylesheets().add(App.class.getResource("/css/style.css").toExternalForm());
+            scene.getStylesheets().add(
+                App.class.getResource("/css/style.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.sizeToScene();
         } catch (Exception e) {
@@ -42,11 +43,7 @@ public class App extends Application {
         }
     }
 
-    public static Stage getPrimaryStage() {
-        return primaryStage;
-    }
+    public static Stage getPrimaryStage() { return primaryStage; }
 
-    public static void main(String[] args) {
-        launch(args);
-    }
+    public static void main(String[] args) { launch(args); }
 }

@@ -161,25 +161,31 @@ public class ClinicalController implements DataReceiver {
     @FXML private void onSalvaGiallo() { salva("GIALLO"); }
     @FXML private void onSalvaRosso()  { salva("ROSSO"); }
 
+    @FXML
+    private void onAnnulla() {
+        App.navigateTo("dashboard");
+    }
+
     private void salva(String triage) {
         try {
             // 1. Crea Encounter con codice triage
             Encounter encounter = clinicalService.createEncounter(currentPatient, triage);
+            String encounterId = encounter.getIdElement().getIdPart();
 
             // 2. Salva parametri vitali
-            saveObsIfPresent(hrField,     "8867-4", "Heart rate",                 "bpm",     "/min");
-            saveObsIfPresent(pasSisField, "8480-6", "Systolic blood pressure",    "mmHg",    "mm[Hg]");
-            saveObsIfPresent(pasDiaField, "8462-4", "Diastolic blood pressure",   "mmHg",    "mm[Hg]");
-            saveObsIfPresent(spo2Field,   "59408-5","Oxygen saturation",          "%",       "%");
-            saveObsIfPresent(frField,     "9279-1", "Respiratory rate",           "atti/min","/min");
-            saveObsIfPresent(tempField,   "8310-5", "Body temperature",           "°C",      "Cel");
+            saveObsIfPresent(hrField,     encounterId, "8867-4", "Heart rate",              "bpm",      "/min");
+            saveObsIfPresent(pasSisField, encounterId, "8480-6", "Systolic blood pressure", "mmHg",     "mm[Hg]");
+            saveObsIfPresent(pasDiaField, encounterId, "8462-4", "Diastolic blood pressure","mmHg",     "mm[Hg]");
+            saveObsIfPresent(spo2Field,   encounterId, "59408-5","Oxygen saturation",       "pct",      "%");
+            saveObsIfPresent(frField,     encounterId, "9279-1", "Respiratory rate",        "atti/min", "/min");
+            saveObsIfPresent(tempField,   encounterId, "8310-5", "Body temperature",        "grC",      "Cel");
 
             // 3. Salva parametri aggiuntivi
-            saveObsIfPresent(gcsField,      "9269-2", "Glasgow coma score",   "score",  "{score}");
-            saveObsIfPresent(nrsField,      "72514-3","Pain severity NRS",    "score",  "{score}");
-            saveObsIfPresent(glicemiaField, "2339-0", "Glucose",              "mg/dL",  "mg/dL");
-            saveObsIfPresent(pesoField,     "29463-7","Body weight",          "kg",     "kg");
-            saveObsIfPresent(altezzaField,  "8302-2", "Body height",          "cm",     "cm");
+            saveObsIfPresent(gcsField,      encounterId, "9269-2", "Glasgow coma score", "score", "{score}");
+            saveObsIfPresent(nrsField,      encounterId, "72514-3","Pain severity NRS",  "score", "{score}");
+            saveObsIfPresent(glicemiaField, encounterId, "2339-0", "Glucose",            "mg/dL", "mg/dL");
+            saveObsIfPresent(pesoField,     encounterId, "29463-7","Body weight",        "kg",    "kg");
+            saveObsIfPresent(altezzaField,  encounterId, "8302-2", "Body height",        "cm",    "cm");
 
             // 4. Salva allergie
             for (String a : allergie) {
@@ -194,20 +200,22 @@ public class ClinicalController implements DataReceiver {
             showAlert(Alert.AlertType.INFORMATION, "Salvataggio completato",
                     "Accesso salvato con codice " + triage + ".\nTutti i dati sono stati inviati al server FHIR.");
 
-            App.navigateTo("main");
+            App.navigateTo("dashboard");
 
         } catch (Exception e) {
             showAlert(Alert.AlertType.ERROR, "Errore", "Errore durante il salvataggio: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private void saveObsIfPresent(TextField field, String loinc, String display, String unit, String ucum) {
-        if (field == null || field.getText().isBlank()) return;
-        try {
-            double val = Double.parseDouble(field.getText().trim().replace(",", "."));
-            clinicalService.saveObservation(currentPatient, null, loinc, display, val, unit, ucum);
-        } catch (NumberFormatException ignored) {}
-    }
+    private void saveObsIfPresent(TextField field, String encounterId,
+    								String loinc, String display, String unit, String ucum) {
+		if (field == null || field.getText().isBlank()) return;
+		try {
+			double val = Double.parseDouble(field.getText().trim().replace(",", "."));
+			clinicalService.saveObservation(currentPatient, encounterId, loinc, display, val, unit, ucum);
+		} catch (NumberFormatException ignored) {}
+	}
 
     private void showAlert(Alert.AlertType type, String title, String msg) {
         Alert alert = new Alert(type);

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="it.unibo.controller.DashboardController"
+      styleClass="root-pane"
+      spacing="16" prefWidth="1100" prefHeight="700">
+
+    <HBox alignment="CENTER_LEFT" spacing="16">
+        <Label text="Pronto Soccorso - Pazienti in attesa"
+               styleClass="title-label" HBox.hgrow="ALWAYS"/>
+        <Button text="Aggiorna" onAction="#onAggiorna" styleClass="btn-secondary"/>
+        <Button text="Nuovo paziente" onAction="#onNuovoPaziente" styleClass="btn-primary"/>
+    </HBox>
+
+    <Separator/>
+
+    <HBox spacing="12" VBox.vgrow="ALWAYS">
+
+        <VBox styleClass="col-rosso" spacing="8" prefWidth="260" HBox.hgrow="ALWAYS">
+            <Label text="ROSSO" styleClass="col-header-rosso"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colRosso" spacing="8" styleClass="col-body"/>
+            </ScrollPane>
+        </VBox>
+
+        <VBox styleClass="col-giallo" spacing="8" prefWidth="260" HBox.hgrow="ALWAYS">
+            <Label text="GIALLO" styleClass="col-header-giallo"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colGiallo" spacing="8" styleClass="col-body"/>
+            </ScrollPane>
+        </VBox>
+
+        <VBox styleClass="col-verde" spacing="8" prefWidth="260" HBox.hgrow="ALWAYS">
+            <Label text="VERDE" styleClass="col-header-verde"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colVerde" spacing="8" styleClass="col-body"/>
+            </ScrollPane>
+        </VBox>
+
+        <VBox styleClass="col-bianco" spacing="8" prefWidth="260" HBox.hgrow="ALWAYS">
+            <Label text="BIANCO" styleClass="col-header-bianco"/>
+            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                <VBox fx:id="colBianco" spacing="8" styleClass="col-body"/>
+            </ScrollPane>
+        </VBox>
+
+    </HBox>
+
+    <Label fx:id="statusLabel" text="" styleClass="hint-label"/>
+
+</VBox>

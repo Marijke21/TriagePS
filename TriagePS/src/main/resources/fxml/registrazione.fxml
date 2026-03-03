@@ -4,9 +4,9 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
+            fx:controller="it.unibo.controller.RegistrazioneController"
             fitToWidth="true">
-<VBox fx:controller="it.unibo.controller.RegistrazioneController"
-      styleClass="root-pane"
+<VBox styleClass="root-pane"
       spacing="16" prefWidth="560">
 
     <Label text="📋 Registrazione Nuovo Paziente" styleClass="title-label"/>
@@ -30,12 +30,12 @@
 
         <Label text="Sesso *" GridPane.rowIndex="4" GridPane.columnIndex="0" styleClass="field-label"/>
         <HBox spacing="12" GridPane.rowIndex="4" GridPane.columnIndex="1">
-            <RadioButton fx:id="sessoM" text="M" toggleGroup="$sessoGroup"/>
-            <RadioButton fx:id="sessoF" text="F" toggleGroup="$sessoGroup"/>
-            <RadioButton fx:id="sessoAltro" text="Altro" toggleGroup="$sessoGroup"/>
             <fx:define>
                 <ToggleGroup fx:id="sessoGroup"/>
             </fx:define>
+            <RadioButton fx:id="sessoM" text="M" toggleGroup="$sessoGroup"/>
+            <RadioButton fx:id="sessoF" text="F" toggleGroup="$sessoGroup"/>
+            <RadioButton fx:id="sessoAltro" text="Altro" toggleGroup="$sessoGroup"/>
         </HBox>
     </GridPane>
 
